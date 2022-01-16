@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useMemo } from "react";
-import Pagination  from "./Pagination";
+import { Link, useHistory } from "react-router-dom";
+import Pagination from "./Pagination";
+import Details from "./Details";
 import "./style.css";
 
 let PageSize = 3;
 
+
+
 const ApiCall = () => {
   const [data, dataSet] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [update, setUpdate] = useState(false);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -25,6 +30,14 @@ const ApiCall = () => {
 
     fetchMyAPI();
   }, []);
+
+  const history = useHistory();
+  const handleClick = (props) => {
+   
+    setUpdate(!update);
+    history.push('/details')
+    console.log("KHJKHJ");
+  };
 
   const renderHeader = () => {
     let headerElement = [
@@ -70,19 +83,22 @@ const ApiCall = () => {
 
   return (
     <>
-      <h1 id="title">React Table</h1>
+      {update && <Details />}
+
       <table id="employee">
         <thead>
           <tr>{renderHeader()}</tr>
         </thead>
-        <tbody>{renderBody()}</tbody>
+        <tbody onClick={handleClick} Details={Details}>
+          {renderBody()}
+        </tbody>
       </table>
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
         totalCount={data.length}
         pageSize={PageSize}
-        onPageChange={page => setCurrentPage(page)}
+        onPageChange={(page) => setCurrentPage(page)}
       />
     </>
   );
