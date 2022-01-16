@@ -1,9 +1,21 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./style.css";
 
 const Details = (props) => {
+  const [details, setDetails] = useState([]);
   const history = useHistory();
+
+  useEffect(() => {
+      fetch("https://run.mocky.io/v3/45928af0-9bd1-4eb0-a9a1-55845a009e8d/1"+props.match.params.id)
+      .then(res => res.json())
+      .then(
+          (result) => {
+            setDetails(result);
+          }
+      );
+  });
 
   const cancelButton = () => {
     history.push("/");
@@ -38,10 +50,10 @@ const Details = (props) => {
       <div className="inputSports">
         <p className="input">Favourite Sports:</p>
         <input className="inputFavorite" type="checkbox"></input>
-        <label for="vehicle1">American Footbaal</label>
+        <label>American Footbaal</label>
         <br></br>
         <input className="inputFavorite" type="checkbox"></input>
-        <label for="vehicle1">Baseball</label>
+        <label>Baseball</label>
         <br></br>
         <input className="inputFavorite" type="checkbox"></input>
         <label for="vehicle1">Basketball</label>

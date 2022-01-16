@@ -11,7 +11,7 @@ function App(props) {
         {/*  <CallApi />
         <Details /> */}
         <Route path="/" exact component={CallApi} />
-        <Route path="/person/1" render={props} component={Details} />
+        <Route path="/person/1"  component={Details} />
       </div>
     </Router>
   );
