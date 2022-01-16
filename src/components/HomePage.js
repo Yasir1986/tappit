@@ -6,8 +6,6 @@ import "./style.css";
 
 let PageSize = 3;
 
-
-
 const ApiCall = () => {
   const [data, dataSet] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,10 +31,8 @@ const ApiCall = () => {
 
   const history = useHistory();
   const handleClick = (props) => {
-   
     setUpdate(!update);
-    history.push('/details')
-    console.log("KHJKHJ");
+    history.push("/person/1");
   };
 
   const renderHeader = () => {
@@ -85,7 +81,7 @@ const ApiCall = () => {
     <>
       {update && <Details />}
 
-      <table id="employee">
+      <table id="person">
         <thead>
           <tr>{renderHeader()}</tr>
         </thead>
