@@ -1,8 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import Pagination  from "./Pagination";
 import "./style.css";
+
+let PageSize = 3;
 
 const ApiCall = () => {
   const [data, dataSet] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return data.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
 
   useEffect(() => {
     async function fetchMyAPI() {
@@ -23,16 +33,24 @@ const ApiCall = () => {
       "Valid",
       "Authorised",
       "Palindrome",
+      "Favourite Sports",
     ];
 
     return headerElement.map((key, index) => {
-      return <th key={index}>{key.toUpperCase()}</th>;
+      return <th key={index}>{key}</th>;
     });
   };
 
   const renderBody = () => {
     return data.map(
-      ({ firstName, isEnabled, isValid, isAuthorised, isPalindrome }) => {
+      ({
+        firstName,
+        isEnabled,
+        isValid,
+        isAuthorised,
+        isPalindrome,
+        favouriteSports,
+      }) => {
         {
           console.log(data);
         }
@@ -43,6 +61,7 @@ const ApiCall = () => {
             <td>{isValid ? "true" : "false"}</td>
             <td>{isAuthorised ? "true" : "false"}</td>
             <td>{isPalindrome ? "true" : "false"}</td>
+            {/* <td>{favouriteSports.name}</td> */}
           </tr>
         );
       }
@@ -58,6 +77,13 @@ const ApiCall = () => {
         </thead>
         <tbody>{renderBody()}</tbody>
       </table>
+      <Pagination
+        className="pagination-bar"
+        currentPage={currentPage}
+        totalCount={data.length}
+        pageSize={PageSize}
+        onPageChange={page => setCurrentPage(page)}
+      />
     </>
   );
 };
