@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import "./style.css";
+
 const ApiCall = () => {
   const [data, dataSet] = useState([]);
 
@@ -17,20 +19,43 @@ const ApiCall = () => {
 
   // return <div>{JSON.stringify(data)}</div>;
 
-
   return (
     <React.Fragment>
+      <div className="wrapper">
         {console.log(data)}
-          {data.map((data, i) => (
-              <div key={i}>
-                <p>FristName: {data.firstName} {data.lastName}</p>
-                <p>Enabled: {data.isEnabled ? "true" : "false"}</p>
-                <p>Valid: {data.isValid ? "true" : "false"}</p>
-                <p>Authorised: {data.isAuthorised ? "true" : "false"}</p>
-                <p>Palindorme: {data.isPalindorme ? "true" : "false"}</p>
-                {/* <p>Favorite Sports:{data.favouriteSports}</p> */}
-              </div>
-          ))}
+        {data.map((data, i) => (
+          <div key={i} className="container">
+            <table>
+              <tr>
+                <th className="table-heading">Name:</th>
+                <td>
+                  {data.firstName} {data.lastName}
+                </td>
+
+                <th className="table-heading">Enabled:</th>
+                <td>{data.isEnabled ? "true" : "false"}</td>
+
+                <th className="table-heading">Valid:</th>
+                <td>{data.isValid ? "true" : "false"}</td>
+
+                <th className="table-heading">Authorised:</th>
+                <td>{data.isAuthorised ? "true" : "false"}</td>
+
+                <th className="table-heading">Palindorme:</th>
+                <td>{data.isPalindorme ? "true" : "false"}</td>
+
+                {data.favouriteSports.map((data, i) => (
+                  <th className="table-heading">
+                    Favorite Sports:
+                    <td>{data.name}</td>
+                  </th>
+                ))}
+              </tr>
+            </table>
+          </div>
+        ))}
+        ;
+      </div>
     </React.Fragment>
   );
 };
