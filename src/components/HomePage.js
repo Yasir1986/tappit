@@ -42,7 +42,7 @@ const ApiCall = () => {
       "Valid",
       "Authorised",
       "Palindrome",
-      "Favourite Sports",
+      //"Favourite Sports",
     ];
 
     return headerElement.map((key, index) => {
@@ -58,7 +58,7 @@ const ApiCall = () => {
         isValid,
         isAuthorised,
         isPalindrome,
-        favouriteSports,
+        //favouriteSports,
       }) => {
         {
           console.log(data);
@@ -70,7 +70,7 @@ const ApiCall = () => {
             <td>{isValid ? "true" : "false"}</td>
             <td>{isAuthorised ? "true" : "false"}</td>
             <td>{isPalindrome ? "true" : "false"}</td>
-            {/* <td>{favouriteSports.name}</td> */}
+            {/*  <td>{favouriteSports.name}</td> */}
           </tr>
         );
       }
@@ -81,7 +81,7 @@ const ApiCall = () => {
     <>
       {update && <Details />}
 
-      <table id="person">
+      <table id="person" data-testid="Name">
         <thead>
           <tr>{renderHeader()}</tr>
         </thead>
