@@ -12,7 +12,7 @@ const Details = (props) => {
       "https://run.mocky.io/v3/45928af0-9bd1-4eb0-a9a1-55845a009e8d/1" +
         props.match.params.id
     )
-      .then((res) => res.json())
+      .then((res) => res.json(details))
       .then((result) => {
         setDetails(result);
       });
