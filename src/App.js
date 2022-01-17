@@ -8,10 +8,8 @@ function App(props) {
     <Router>
       <div className="App">
         <h1>My Amazing Favorite American Sports App</h1>
-        {/*  <CallApi />
-        <Details /> */}
         <Route path="/" exact component={CallApi} />
-        <Route path="/person/1"  component={Details} />
+        <Route path="/person/1" component={Details} />
       </div>
     </Router>
   );
