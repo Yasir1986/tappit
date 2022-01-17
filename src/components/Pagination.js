@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { usePagination, DOTS } from "./usePagination";
 import "./pagination.scss";
+
 const Pagination = (props) => {
   const {
     onPageChange,
@@ -46,10 +47,14 @@ const Pagination = (props) => {
       >
         <div className="arrow left" />
       </li>
-      {paginationRange.map((pageNumber) => {
+      {paginationRange.map((pageNumber, key, index) => {
         // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
+          return (
+            <li key={index} className="pagination-item dots">
+              &#8230;
+            </li>
+          );
         }
 
         // Render our Page Pills

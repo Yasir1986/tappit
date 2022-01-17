@@ -42,7 +42,7 @@ const ApiCall = () => {
       "Valid",
       "Authorised",
       "Palindrome",
-      //"Favourite Sports",
+     /*  "Favourite Sports" */
     ];
 
     return headerElement.map((key, index) => {
@@ -54,18 +54,16 @@ const ApiCall = () => {
     return data.map(
       ({
         firstName,
+        lastName,
         isEnabled,
         isValid,
         isAuthorised,
         isPalindrome,
-        //favouriteSports,
+        /* favouriteSports */
       }) => {
-        {
-          console.log(data);
-        }
         return (
           <tr>
-            <td>{firstName}</td>
+            <td>{firstName} {lastName}</td>
             <td>{isEnabled ? "true" : "false"}</td>
             <td>{isValid ? "true" : "false"}</td>
             <td>{isAuthorised ? "true" : "false"}</td>

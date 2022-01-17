@@ -57,7 +57,7 @@ const Details = (props) => {
         <label>Baseball</label>
         <br></br>
         <input className="inputFavorite" type="checkbox"></input>
-        <label for="vehicle1">Basketball</label>
+        <label>Basketball</label>
         <br></br>
       </div>
       <div className="buttonDiv">
