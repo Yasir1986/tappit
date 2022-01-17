@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Pagination from "./Pagination";
 import Details from "./Details";
 import "./style.css";
@@ -10,12 +10,6 @@ const ApiCall = () => {
   const [data, dataSet] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [update, setUpdate] = useState(false);
-
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
 
   useEffect(() => {
     async function fetchMyAPI() {
